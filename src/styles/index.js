@@ -12,11 +12,11 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: '95%',
   },
-  button: {
+  sortButton: {
     width: '48%',
     margin: `${theme.spacing.unit}px 2px`,
   },
-  mainButton: {
+  searchResetButton: {
     width: '98%',
   },
   listItem: {

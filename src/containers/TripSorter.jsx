@@ -110,9 +110,9 @@ export class TripSorter extends Component {
       results,
     } = this.state
 
-    const mainButtonAction = results ? this.handleReset : this.handleSearch
-    const mainButtonText = results ? 'Reset' : 'Search'
-    const mainButtonColor = results ? 'primary' : 'secondary'
+    const searchResetButtonAction = results ? this.handleReset : this.handleSearch
+    const searchResetButtonText = results ? 'Reset' : 'Search'
+    const searchResetButtonColor = results ? 'primary' : 'secondary'
 
     return (
       <Card className={classes.card}>
@@ -133,7 +133,7 @@ export class TripSorter extends Component {
             selectedOption={arrival}
           />
           <Button
-            className={classes.button}
+            className={classes.sortButton}
             size="small"
             color="primary"
             variant={sortBy === 'cost' ? 'contained' : 'outlined'}
@@ -143,7 +143,7 @@ export class TripSorter extends Component {
             Cheapest
           </Button>
           <Button
-            className={classes.button}
+            className={classes.sortButton}
             size="small"
             color="primary"
             variant={sortBy === 'duration' ? 'contained' : 'outlined'}
@@ -162,13 +162,13 @@ export class TripSorter extends Component {
               )
             }
             <Button
-              className={classes.mainButton}
+              className={classes.searchResetButton}
               size="small"
-              color={mainButtonColor}
+              color={searchResetButtonColor}
               variant="contained"
-              onClick={mainButtonAction}
+              onClick={searchResetButtonAction}
             >
-              {mainButtonText}
+              {searchResetButtonText}
             </Button>
           </div>
         </CardContent>
