@@ -7,7 +7,12 @@ import SelectUi from '@material-ui/core/Select'
 import styles from '../styles'
 
 export const Select = ({
-  label, selectedOption, onChange, options, classes,
+  label,
+  selectedOption,
+  onChange,
+  options,
+  classes,
+  disabled,
 }) => (
   <FormControl className={classes.formControl}>
     <InputLabel htmlFor="age-native-simple">
@@ -17,6 +22,7 @@ export const Select = ({
       native
       value={selectedOption}
       onChange={onChange}
+      disabled={disabled}
     >
       <option value="" />
       {
@@ -35,6 +41,7 @@ export const Select = ({
 
 Select.propTypes = {
   label: PropTypes.string,
+  disabled: PropTypes.bool,
   classes: PropTypes.object.isRequired,
   selectedOption: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
@@ -43,6 +50,7 @@ Select.propTypes = {
 
 Select.defaultProps = {
   label: null,
+  disabled: false,
 }
 
 export default withStyles(styles)(Select)

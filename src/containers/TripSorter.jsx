@@ -125,12 +125,14 @@ export class TripSorter extends Component {
             onChange={this.handelDepartureSelect()}
             options={cities}
             selectedOption={departure}
+            disabled={!!results}
           />
           <Select
             label="To:"
             onChange={this.handleArrivalSelect()}
             options={arrivals}
             selectedOption={arrival}
+            disabled={!!results}
           />
           <Button
             className={classes.sortButton}
