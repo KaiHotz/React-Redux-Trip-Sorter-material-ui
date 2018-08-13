@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import { createStructuredSelector } from 'reselect'
+import _ from 'lodash'
 import { withStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-
 import { fetchData } from '../actions'
 import { dealsSelector, citiesSelector } from '../selectors'
 import Select from '../components/select'
@@ -74,18 +74,10 @@ export class TripSorter extends Component {
     let sortedRsults
     switch (type) {
       case 'cost':
-        sortedRsults = results.sort((a, b) => {
-          if ((a.cost - (a.cost * a.discount / 100)) > (b.cost - (b.cost * b.discount / 100))) {
-            return 1
-          }
-        })
+        sortedRsults = _.sortBy(results, o => o.cost - (o.cost * o.discount / 100))
         break
       case 'duration':
-        sortedRsults = results.sort((a, b) => {
-          if ((parseInt(a.duration.h, 10) * 60 + parseInt(a.duration.m, 10)) > (parseInt(b.duration.h, 10) * 60 + parseInt(b.duration.m, 10))) {
-            return 1
-          }
-        })
+        sortedRsults = _.sortBy(results, o => parseInt(o.duration.h, 10) * 60 + parseInt(o.duration.m, 10))
         break
       default:
         return
