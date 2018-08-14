@@ -5,7 +5,6 @@ import { Select } from '../select'
 const baseProps = {
   onChange: jest.fn(),
   options: ['London', 'Amsterdam', 'Paris'],
-  selectedOption: '',
   classes: { formControl: '' },
 }
 
@@ -24,7 +23,7 @@ describe('<Select />', () => {
     expect(baseProps.onChange).toHaveBeenCalled()
   })
 
-  it('should be disableable', () => {
+  it('should have a Label', () => {
     const props = {
       ...baseProps,
       label: 'customLabel',
@@ -34,7 +33,7 @@ describe('<Select />', () => {
     expect(wrapper.find('label').text().includes(props.label)).toBeTruthy()
   })
 
-  it('should be disableable', () => {
+  it('should be disabled', () => {
     const wrapper = mount(<Select disabled {...baseProps} />)
 
     expect(wrapper.find('select').prop('disabled')).toBe(true)
