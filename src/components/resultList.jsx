@@ -11,7 +11,7 @@ import styles from '../styles'
 export const ResultList = ({ results, classes }) => (
   <List>
     {
-      results && results.map(result => (
+      results.map(result => (
         <ListItem
           className={classes.listItem}
           key={result.reference}
@@ -25,14 +25,11 @@ export const ResultList = ({ results, classes }) => (
     }
     <Divider />
     {
-      results
-      && (
-        <ListItem className={classes.listItem}>
-          <ListItemText
-            primary={`Total ${Math.trunc(getTotalTime(results) / 60)}h${getTotalTime(results) % 60}m ${getTotalCost(results)}€`}
-          />
-        </ListItem>
-      )
+      <ListItem className={classes.listItem}>
+        <ListItemText
+          primary={`Total ${Math.trunc(getTotalTime(results) / 60)}h${getTotalTime(results) % 60}m ${getTotalCost(results)}€`}
+        />
+      </ListItem>
     }
   </List>
 )

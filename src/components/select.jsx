@@ -15,9 +15,13 @@ export const Select = ({
   disabled,
 }) => (
   <FormControl className={classes.formControl}>
-    <InputLabel htmlFor="age-native-simple">
-      {label}
-    </InputLabel>
+    {
+      label && (
+        <InputLabel htmlFor="age-native-simple">
+          {label}
+        </InputLabel>
+      )
+    }
     <SelectUi
       native
       value={selectedOption}
@@ -42,8 +46,8 @@ export const Select = ({
 Select.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
+  selectedOption: PropTypes.string,
   classes: PropTypes.object.isRequired,
-  selectedOption: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.array.isRequired,
 }
@@ -51,6 +55,7 @@ Select.propTypes = {
 Select.defaultProps = {
   label: null,
   disabled: false,
+  selectedOption: '',
 }
 
 export default withStyles(styles)(Select)
