@@ -14,7 +14,7 @@
     "lint": "esw --ext .jsx --ext .js --color",
     "test": "jest",
     "test:watch": "npm run test -- --watch",
-    "build": "npm run clean && npm run lint && webpack --config ./config/webpack.config.prod.js --mode production",
+    "build": "npm run clean && npm run lint && npm run test && webpack --config ./config/webpack.config.prod.js --mode production",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
