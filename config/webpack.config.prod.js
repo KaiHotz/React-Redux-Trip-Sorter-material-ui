@@ -1,5 +1,6 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const VENDOR_LIBS = [
@@ -94,5 +95,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
+    new CopyWebpackPlugin([
+      { from: 'src/mockedData', to: 'mockedData' },
+    ]),
   ],
 }
