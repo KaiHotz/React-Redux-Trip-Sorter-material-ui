@@ -9,12 +9,11 @@ export const dealsSelector = () => createSelector(
 
 export const citiesSelector = () => createSelector(
   dataState,
-  data => {
-    const cities = []
-    if (data.deals) {
-      data.deals.map(deal => cities.push(deal.departure, deal.arrival))
+  data => (
+    data.deals && data.deals.reduce((acc, deal) => {
+      acc.push(deal.departure, deal.arrival)
 
-      return [...new Set(cities)]
-    }
-  },
+      return [...new Set(acc)].sort()
+    }, [])
+  ),
 )
