@@ -1,23 +1,24 @@
 {
   "presets": [
-    "env",
-    "react"
+    "@babel/preset-env",
+    "@babel/preset-react"
   ],
   "plugins": [
-    "syntax-dynamic-import",
-    "transform-object-rest-spread",
-    "transform-class-properties"
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-optional-chaining"
   ],
   "env": {
     "production": {
       "presets": [
         [
-          "env",
+          "@babel/preset-env",
           {
             "targets": {
               "browsers": "last 2 Chrome versions"
             },
-            "useBuiltIns": true
+            "useBuiltIns": "entry"
           }
         ]
       ]
@@ -25,12 +26,12 @@
     "development": {
       "presets": [
         [
-          "env",
+          "@babel/preset-env",
           {
             "targets": {
               "browsers": "last 2 Chrome versions"
             },
-            "useBuiltIns": true
+            "useBuiltIns": "entry"
           }
         ]
       ]
@@ -38,12 +39,12 @@
     "test": {
       "presets": [
         [
-          "env",
+          "@babel/preset-env",
           {
             "targets": {
               "node": "current"
             },
-            "useBuiltIns": true
+            "useBuiltIns": "entry"
           }
         ]
       ]
