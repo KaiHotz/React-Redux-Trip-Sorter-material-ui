@@ -3,37 +3,46 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { compose } from 'recompose'
 import { createStructuredSelector } from 'reselect'
-import _ from 'lodash'
 import { withStyles } from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
-import { fetchData } from '../actions'
-import { dealsSelector, citiesSelector } from '../selectors'
-import Select from '../components/select'
-import ResultList from '../components/resultList'
+import { SORT_BY } from '../actions/types'
+import {
+  fetchData,
+  search,
+  resetSearch,
+  sortBy,
+} from '../actions'
+import { dealsSelector, citiesSelector, resultsSelector } from '../selectors'
+import Select from '../components/Select'
+import ResultList from '../components/ResultList'
 import styles from '../styles'
 
 export class TripSorter extends Component {
   static propTypes = {
     deals: PropTypes.array,
     cities: PropTypes.array,
+    results: PropTypes.array,
     fetchData: PropTypes.func.isRequired,
+    search: PropTypes.func.isRequired,
+    sortBy: PropTypes.func.isRequired,
+    resetSearch: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
   }
 
   static defaultProps = {
     deals: [],
     cities: [],
+    results: null,
   }
 
   state = {
     departure: '',
     arrival: '',
     arrivals: [],
-    results: null,
-    sortBy: null,
+    sorter: null,
   }
 
   componentDidMount() {
@@ -62,52 +71,38 @@ export class TripSorter extends Component {
   }
 
   handleSearch = () => {
-    const { deals } = this.props
+    const { search } = this.props
     const { departure, arrival } = this.state
-    const results = deals.filter(deal => deal.departure === departure && deal.arrival === arrival)
-
-    this.setState({ results })
+    search(departure, arrival)
   }
 
-  handleSort = type => () => {
-    const { results } = this.state
-    let sortedRsults
-    switch (type) {
-      case 'cost':
-        sortedRsults = _.sortBy(results, o => o.cost - (o.cost * o.discount / 100))
-        break
-      case 'duration':
-        sortedRsults = _.sortBy(results, o => parseInt(o.duration.h, 10) * 60 + parseInt(o.duration.m, 10))
-        break
-      default:
-        return
-    }
-
+  handleSort = sorter => () => {
+    const { sortBy } = this.props
     this.setState({
-      results: sortedRsults,
-      sortBy: type,
+      sorter,
     })
+    sortBy(sorter)
   }
 
   handleReset = () => {
+    const { resetSearch } = this.props
     this.setState({
       departure: '',
       arrival: '',
       arrivals: [],
-      results: null,
-      sortBy: null,
+      sorter: null,
     })
+    resetSearch()
   }
 
   render() {
-    const { cities, classes } = this.props
-
+    const { cities, classes, results } = this.props
+    const { COST, DURATION } = SORT_BY
     const {
       departure,
       arrival,
       arrivals,
-      sortBy,
-      results,
+      sorter,
     } = this.state
 
     const searchResetButtonAction = results ? this.handleReset : this.handleSearch
@@ -138,8 +133,8 @@ export class TripSorter extends Component {
             className={classes.sortButton}
             size="small"
             color="primary"
-            variant={sortBy === 'cost' ? 'contained' : 'outlined'}
-            onClick={this.handleSort('cost')}
+            variant={sorter === COST ? 'contained' : 'outlined'}
+            onClick={this.handleSort(COST)}
             disabled={results === null}
           >
             Cheapest
@@ -148,8 +143,8 @@ export class TripSorter extends Component {
             className={classes.sortButton}
             size="small"
             color="primary"
-            variant={sortBy === 'duration' ? 'contained' : 'outlined'}
-            onClick={this.handleSort('duration')}
+            variant={sorter === DURATION ? 'contained' : 'outlined'}
+            onClick={this.handleSort(DURATION)}
             disabled={results === null}
           >
             Fastest
@@ -182,9 +177,12 @@ export class TripSorter extends Component {
 const mapStateToProps = createStructuredSelector({
   deals: dealsSelector(),
   cities: citiesSelector(),
+  results: resultsSelector(),
 })
 
 export default compose(
-  connect(mapStateToProps, { fetchData }),
+  connect(mapStateToProps, {
+    fetchData, search, resetSearch, sortBy,
+  }),
   withStyles(styles),
 )(TripSorter)
