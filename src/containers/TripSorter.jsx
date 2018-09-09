@@ -182,7 +182,7 @@ const mapStateToProps = createStructuredSelector({
 
 export default compose(
   connect(mapStateToProps, {
-    fetchData, search, resetSearch, sortBy,
+    fetchData, search, sortBy, resetSearch,
   }),
   withStyles(styles),
 )(TripSorter)

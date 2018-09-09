@@ -4,6 +4,9 @@ import { TripSorter } from '../TripSorter'
 
 const baseProps = {
   fetchData: jest.fn(),
+  search: jest.fn(),
+  sortBy: jest.fn(),
+  resetSearch: jest.fn(),
   classes: {
     card: '',
     title: '',
