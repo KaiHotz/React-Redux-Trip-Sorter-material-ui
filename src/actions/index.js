@@ -1,6 +1,10 @@
 import axios from 'axios'
 import path from 'path'
-import { FETCH_DATA } from './types'
+import {
+  FETCH_DATA,
+  SEARCH,
+  SEARCH_RESET,
+} from './types'
 
 const url = path.resolve(__dirname, '/mockedData/response.json')
 
@@ -15,18 +19,22 @@ export const fetchData = () => dispatch => axios.get(url)
     throw (error)
   })
 
-/*
-Without axios and using the fetch api:
+export const search = (departure, arrival) => (dispatch, getState) => {
+  const { data: { deals } } = getState()
+  const payload = deals?.filter(deal => deal.departure === departure && deal.arrival === arrival)
 
-export const fetchData = () => dispatch => fetch(url)
-  .then(r => r.json())
-  .then(json => {
-    dispatch({
-      type: FETCH_DATA,
-      payload: json,
-    })
+  dispatch({
+    type: SEARCH,
+    payload,
   })
-  .catch(error => {
-    throw (error)
+}
+
+export const sortBy = type => dispatch => {
+  dispatch({
+    type,
   })
-*/
+}
+
+export const resetSearch = () => dispatch => dispatch({
+  type: SEARCH_RESET,
+})

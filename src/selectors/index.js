@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect'
 
 const dataState = state => state.data
+const resultsState = state => state.results
 
 export const dealsSelector = () => createSelector(
   dataState,
@@ -16,4 +17,9 @@ export const citiesSelector = () => createSelector(
       return [...new Set(acc)].sort()
     }, [])
   ),
+)
+
+export const resultsSelector = () => createSelector(
+  resultsState,
+  results => results,
 )
