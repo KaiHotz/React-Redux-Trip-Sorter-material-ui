@@ -135,7 +135,7 @@ export class TripSorter extends Component {
             color="primary"
             variant={sorter === COST ? 'contained' : 'outlined'}
             onClick={this.handleSort(COST)}
-            disabled={results === null}
+            disabled={!results}
           >
             Cheapest
           </Button>
@@ -145,7 +145,7 @@ export class TripSorter extends Component {
             color="primary"
             variant={sorter === DURATION ? 'contained' : 'outlined'}
             onClick={this.handleSort(DURATION)}
-            disabled={results === null}
+            disabled={!results}
           >
             Fastest
           </Button>
