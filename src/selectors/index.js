@@ -21,5 +21,11 @@ export const citiesSelector = () => createSelector(
 
 export const resultsSelector = () => createSelector(
   resultsState,
-  results => results,
+  results => results.data,
 )
+
+export const sortSelector = () => createSelector(
+  resultsState,
+  results => results.sorted,
+)
+

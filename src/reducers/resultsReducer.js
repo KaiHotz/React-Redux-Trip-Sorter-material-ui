@@ -1,16 +1,30 @@
 import _ from 'lodash'
 import { SEARCH, SEARCH_RESET, SORT_BY } from '../actions/types'
 
-export const resultsReducer = (state = null, action) => {
+const initialState = {
+  data: null,
+  sorted: null,
+}
+
+export const resultsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH:
-      return action.payload
+      return {
+        data: action.payload,
+        sorted: null,
+      }
     case SORT_BY.DURATION:
-      return _.sortBy(state, result => parseInt(result.duration.h, 10) * 60 + parseInt(result.duration.m, 10))
+      return {
+        data: _.sortBy(state.data, result => parseInt(result.duration.h, 10) * 60 + parseInt(result.duration.m, 10)),
+        sorted: action.type,
+      }
     case SORT_BY.COST:
-      return _.sortBy(state, result => result.cost - (result.cost * result.discount / 100))
+      return {
+        data: _.sortBy(state.data, result => result.cost - (result.cost * result.discount / 100)),
+        sorted: action.type,
+      }
     case SEARCH_RESET:
-      return null
+      return initialState
     default:
       return state
   }

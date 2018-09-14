@@ -15,7 +15,12 @@ import {
   resetSearch,
   sortBy,
 } from '../actions'
-import { dealsSelector, citiesSelector, resultsSelector } from '../selectors'
+import {
+  dealsSelector,
+  citiesSelector,
+  resultsSelector,
+  sortSelector,
+} from '../selectors'
 import Select from '../components/Select'
 import ResultList from '../components/ResultList'
 import styles from '../styles'
@@ -25,6 +30,7 @@ export class TripSorter extends Component {
     deals: PropTypes.array,
     cities: PropTypes.array,
     results: PropTypes.array,
+    sorted: PropTypes.string,
     fetchData: PropTypes.func.isRequired,
     search: PropTypes.func.isRequired,
     sortBy: PropTypes.func.isRequired,
@@ -36,13 +42,13 @@ export class TripSorter extends Component {
     deals: [],
     cities: [],
     results: null,
+    sorted: null,
   }
 
   state = {
     departure: '',
     arrival: '',
     arrivals: [],
-    sorter: null,
   }
 
   componentDidMount() {
@@ -78,9 +84,6 @@ export class TripSorter extends Component {
 
   handleSort = sorter => () => {
     const { sortBy } = this.props
-    this.setState({
-      sorter,
-    })
     sortBy(sorter)
   }
 
@@ -90,20 +93,23 @@ export class TripSorter extends Component {
       departure: '',
       arrival: '',
       arrivals: [],
-      sorter: null,
     })
     resetSearch()
   }
 
   render() {
-    const { cities, classes, results } = this.props
-    const { COST, DURATION } = SORT_BY
+    const {
+      cities,
+      classes,
+      results,
+      sorted,
+    } = this.props
     const {
       departure,
       arrival,
       arrivals,
-      sorter,
     } = this.state
+    const { COST, DURATION } = SORT_BY
 
     const searchResetButtonAction = results ? this.handleReset : this.handleSearch
     const searchResetButtonText = results ? 'Reset' : 'Search'
@@ -112,7 +118,11 @@ export class TripSorter extends Component {
     return (
       <Card className={classes.card}>
         <CardContent>
-          <Typography className={classes.title} variant="display3" gutterBottom>
+          <Typography
+            className={classes.title}
+            variant="display3"
+            gutterBottom
+          >
             Trip Sorter
           </Typography>
           <Select
@@ -133,7 +143,7 @@ export class TripSorter extends Component {
             className={classes.sortButton}
             size="small"
             color="primary"
-            variant={sorter === COST ? 'contained' : 'outlined'}
+            variant={sorted === COST ? 'contained' : 'outlined'}
             onClick={this.handleSort(COST)}
             disabled={!results}
           >
@@ -143,7 +153,7 @@ export class TripSorter extends Component {
             className={classes.sortButton}
             size="small"
             color="primary"
-            variant={sorter === DURATION ? 'contained' : 'outlined'}
+            variant={sorted === DURATION ? 'contained' : 'outlined'}
             onClick={this.handleSort(DURATION)}
             disabled={!results}
           >
@@ -178,6 +188,7 @@ const mapStateToProps = createStructuredSelector({
   deals: dealsSelector(),
   cities: citiesSelector(),
   results: resultsSelector(),
+  sorted: sortSelector(),
 })
 
 export default compose(
