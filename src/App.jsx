@@ -92,14 +92,21 @@ export class App extends Component {
   render() {
     const {
       cities,
-      classes,
+      classes: {
+        card,
+        title,
+        sortButton,
+        searchResetButton,
+      },
       results,
     } = this.props
+
     const {
       departure,
       arrival,
       arrivals,
     } = this.state
+
     const { COST, DURATION } = SORT_BY
 
     const searchResetButtonAction = results ? this.handleReset : this.handleSearch
@@ -107,10 +114,10 @@ export class App extends Component {
     const searchResetButtonColor = results ? 'primary' : 'secondary'
 
     return (
-      <Card className={classes.card}>
+      <Card className={card}>
         <CardContent>
           <Typography
-            className={classes.title}
+            className={title}
             variant="display3"
             gutterBottom
           >
@@ -132,7 +139,7 @@ export class App extends Component {
           />
           <SortBar>
             <Button
-              className={classes.sortButton}
+              className={sortButton}
               size="small"
               color="primary"
               sortby={COST}
@@ -141,7 +148,7 @@ export class App extends Component {
               Cheapest
             </Button>
             <Button
-              className={classes.sortButton}
+              className={sortButton}
               size="small"
               color="primary"
               sortby={DURATION}
@@ -159,7 +166,7 @@ export class App extends Component {
               )
             }
             <Button
-              className={classes.searchResetButton}
+              className={searchResetButton}
               size="small"
               color={searchResetButtonColor}
               variant="contained"
