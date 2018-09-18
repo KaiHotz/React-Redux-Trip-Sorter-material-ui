@@ -8,12 +8,12 @@ import Divider from '@material-ui/core/Divider'
 import { getTotalCost, getTotalTime } from '../utils'
 import styles from '../styles'
 
-export const ResultList = ({ results, classes }) => (
+export const ResultList = ({ results, classes: { listItem } }) => (
   <List>
     {
       results.map(result => (
         <ListItem
-          className={classes.listItem}
+          className={listItem}
           key={result.reference}
         >
           <ListItemText
@@ -25,7 +25,7 @@ export const ResultList = ({ results, classes }) => (
     }
     <Divider />
     {
-      <ListItem className={classes.listItem}>
+      <ListItem className={listItem}>
         <ListItemText
           primary={`Total ${Math.trunc(getTotalTime(results) / 60)}h${getTotalTime(results) % 60}m ${getTotalCost(results)}€`}
         />

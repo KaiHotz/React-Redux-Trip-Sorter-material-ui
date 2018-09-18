@@ -11,10 +11,12 @@ export const Select = ({
   selectedOption,
   onChange,
   options,
-  classes,
+  classes: {
+    formControl,
+  },
   disabled,
 }) => (
-  <FormControl className={classes.formControl}>
+  <FormControl className={formControl}>
     {
       label && (
         <InputLabel htmlFor="age-native-simple">
