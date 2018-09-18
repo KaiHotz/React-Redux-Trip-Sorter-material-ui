@@ -8,18 +8,17 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import SortBar from './SortBar'
 import { SORT_BY } from '../actions/types'
 import {
   fetchData,
   search,
   resetSearch,
-  sortBy,
 } from '../actions'
 import {
   dealsSelector,
   citiesSelector,
   resultsSelector,
-  sortSelector,
 } from '../selectors'
 import Select from '../components/Select'
 import ResultList from '../components/ResultList'
@@ -30,10 +29,8 @@ export class TripSorter extends Component {
     deals: PropTypes.array,
     cities: PropTypes.array,
     results: PropTypes.array,
-    sorted: PropTypes.string,
     fetchData: PropTypes.func.isRequired,
     search: PropTypes.func.isRequired,
-    sortBy: PropTypes.func.isRequired,
     resetSearch: PropTypes.func.isRequired,
     classes: PropTypes.object.isRequired,
   }
@@ -42,7 +39,6 @@ export class TripSorter extends Component {
     deals: [],
     cities: [],
     results: null,
-    sorted: null,
   }
 
   state = {
@@ -82,11 +78,6 @@ export class TripSorter extends Component {
     search(departure, arrival)
   }
 
-  handleSort = sorter => () => {
-    const { sortBy } = this.props
-    sortBy(sorter)
-  }
-
   handleReset = () => {
     const { resetSearch } = this.props
     this.setState({
@@ -102,7 +93,6 @@ export class TripSorter extends Component {
       cities,
       classes,
       results,
-      sorted,
     } = this.props
     const {
       departure,
@@ -139,27 +129,26 @@ export class TripSorter extends Component {
             selectedOption={arrival}
             disabled={!!results}
           />
-          <Button
-            className={classes.sortButton}
-            size="small"
-            color="primary"
-            variant={sorted === COST ? 'contained' : 'outlined'}
-            onClick={this.handleSort(COST)}
-            disabled={!results}
-          >
-            Cheapest
-          </Button>
-          <Button
-            className={classes.sortButton}
-            size="small"
-            color="primary"
-            variant={sorted === DURATION ? 'contained' : 'outlined'}
-            onClick={this.handleSort(DURATION)}
-            disabled={!results}
-          >
-            Fastest
-          </Button>
-
+          <SortBar>
+            <Button
+              className={classes.sortButton}
+              size="small"
+              color="primary"
+              sortby={COST}
+              disabled={!results}
+            >
+              Cheapest
+            </Button>
+            <Button
+              className={classes.sortButton}
+              size="small"
+              color="primary"
+              sortby={DURATION}
+              disabled={!results}
+            >
+              Fastest
+            </Button>
+          </SortBar>
           <div className="results">
             {
               results && (
@@ -188,12 +177,11 @@ const mapStateToProps = createStructuredSelector({
   deals: dealsSelector(),
   cities: citiesSelector(),
   results: resultsSelector(),
-  sorted: sortSelector(),
 })
 
 export default compose(
   connect(mapStateToProps, {
-    fetchData, search, sortBy, resetSearch,
+    fetchData, search, resetSearch,
   }),
   withStyles(styles),
 )(TripSorter)
