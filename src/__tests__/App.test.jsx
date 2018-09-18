@@ -1,11 +1,10 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import { TripSorter } from '../TripSorter'
+import { App } from '../App'
 
 const baseProps = {
   fetchData: jest.fn(),
   search: jest.fn(),
-  sortBy: jest.fn(),
   resetSearch: jest.fn(),
   classes: {
     card: '',
@@ -17,7 +16,7 @@ const baseProps = {
 
 describe('<TripSorter />', () => {
   it('should render', () => {
-    const wrapper = shallow(<TripSorter {...baseProps} />)
+    const wrapper = shallow(<App {...baseProps} />)
 
     expect(wrapper).toBeDefined()
   })
