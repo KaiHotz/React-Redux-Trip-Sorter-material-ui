@@ -10,7 +10,7 @@ import {
   sortBy,
 } from '../actions'
 
-class SortBar extends Component {
+export class SortBar extends Component {
   static propTypes = {
     sorted: PropTypes.string,
     children: PropTypes.node.isRequired,
