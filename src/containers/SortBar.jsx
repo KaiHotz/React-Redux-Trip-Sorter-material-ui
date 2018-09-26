@@ -28,12 +28,12 @@ export class SortBar extends Component {
 
   render() {
     const { children, sorted } = this.props
-    const sortButton = React.Children.map(children, child => React.cloneElement(child, {
+    const sortButtons = React.Children.map(children, child => React.cloneElement(child, {
       variant: child.props.sortby === sorted ? 'contained' : 'outlined',
       onClick: this.handleSort(child.props.sortby),
     }))
 
-    return <div>{sortButton}</div>
+    return <div>{sortButtons}</div>
   }
 }
 
