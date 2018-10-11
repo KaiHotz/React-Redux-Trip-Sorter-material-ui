@@ -108,10 +108,10 @@ export class App extends Component {
     } = this.state
 
     const { COST, DURATION } = SORT_BY
-
     const searchResetButtonAction = results ? this.handleReset : this.handleSearch
     const searchResetButtonText = results ? 'Reset' : 'Search'
     const searchResetButtonColor = results ? 'primary' : 'secondary'
+    const disableArrival = !!results || departure === ''
 
     return (
       <Card className={card}>
@@ -135,7 +135,7 @@ export class App extends Component {
             onChange={this.handleArrivalSelect()}
             options={arrivals}
             selectedOption={arrival}
-            disabled={!!results}
+            disabled={disableArrival}
           />
           <SortBar>
             <Button
