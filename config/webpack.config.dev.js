@@ -3,6 +3,8 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const PORT = process.env.PORT || 3001
+
 const VENDOR_LIBS = [
   'enzyme',
   'enzyme-adapter-react-16',
@@ -35,6 +37,9 @@ module.exports = {
     historyApiFallback: true,
     compress: true,
     open: true,
+    proxy: {
+      '/api/v1': `http://localhost:${PORT}`,
+    },
   },
   module: {
     rules: [

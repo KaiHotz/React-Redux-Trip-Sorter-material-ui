@@ -1,14 +1,11 @@
 import axios from 'axios'
-import path from 'path'
 import {
   FETCH_DATA,
   SEARCH,
   SEARCH_RESET,
 } from './types'
 
-const url = path.resolve(__dirname, '/mockedData/response.json')
-
-export const fetchData = () => dispatch => axios.get(url)
+export const fetchData = () => dispatch => axios.get('/api/v1/deals')
   .then(response => {
     dispatch({
       type: FETCH_DATA,

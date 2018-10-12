@@ -2,10 +2,11 @@ const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const pino = require('express-pino-logger')()
-const data = require('../src/mockedData/response.json')
+const data = require('../mockedData/data.json')
+
+const PORT = process.env.PORT || 3001
 
 const app = express()
-const PORT = process.env.PORT || 3001
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -18,10 +19,10 @@ app.get('/api/v1/deals', (req, res) => {
 
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
-  app.use(express.static(path.join(__dirname, 'build')))
+  app.use(express.static(path.join(__dirname, '../build')))
   // Handle React routing, return all requests to React app
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+    res.sendFile(path.join(__dirname, '../build', 'index.html'))
   })
 }
 
