@@ -1,6 +1,6 @@
 {
   "name": "react-redux-trip-sorter-material-ui",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": " select your depature and destination, sort them by Cheapest or Fastest option ",
   "main": "index.js",
   "repository": "https://github.com/KaiHotz/React-Redux-Trip-Sorter-material-ui",
