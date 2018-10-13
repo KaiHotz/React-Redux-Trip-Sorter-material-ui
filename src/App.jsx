@@ -118,7 +118,7 @@ export class App extends Component {
         <CardContent>
           <Typography
             className={title}
-            variant="display3"
+            variant="h3"
             gutterBottom
           >
             Trip Sorter
