@@ -9,8 +9,8 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf build",
-    "dev": "run-p server start",
-    "start": "webpack-dev-server --config ./config/webpack.config.dev.js --mode development",
+    "start": "run-p server dev",
+    "dev": "webpack-dev-server --config ./config/webpack.config.dev.js --mode development",
     "server": "node server --exec nodemon | pino-colada",
     "watch": "npm run start -- --watch",
     "lint": "esw --ext .jsx --ext .js --color",

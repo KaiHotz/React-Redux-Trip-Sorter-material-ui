@@ -9,9 +9,9 @@ There are two methods for getting started with this repo.
 
 ```
   > git clone git@github.com:KaiHotz/React-Redux-Trip-Sorter-material-ui.git
-  > cd React-Redux-Trip_Sorter
+  > cd React-Redux-Trip-Sorter-material-ui
   > npm install
-  > npm dev
+  > npm start
   > in your Browser open http://localhost:3000
 ```
 
@@ -20,7 +20,7 @@ Click [here](https://github.com/KaiHotz/React-Redux-Trip-Sorter-material-ui/arch
 
 ```
   > npm install
-  > npm dev
+  > npm start
   > in your Browser open http://localhost:3000
 ```
 
