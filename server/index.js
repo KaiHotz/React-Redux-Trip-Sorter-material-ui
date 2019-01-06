@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const pino = require('express-pino-logger')()
-const data = require('../mockedData/data.json')
+const data = require('./mockedData/data.json')
 
 const PORT = process.env.PORT || 3001
 
