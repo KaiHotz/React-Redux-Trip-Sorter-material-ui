@@ -6,7 +6,7 @@ const initialState = {
   sorted: null,
 }
 
-export const resultsReducer = (state = initialState, action) => {
+const resultsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH:
       return {
@@ -29,3 +29,6 @@ export const resultsReducer = (state = initialState, action) => {
       return state
   }
 }
+
+export default resultsReducer
+

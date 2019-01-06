@@ -1,6 +1,6 @@
 import { FETCH_DATA } from '../actions/types'
 
-export const dataReducer = (state = {}, action) => {
+const dataReducer = (state = {}, action) => {
   switch (action.type) {
     case FETCH_DATA:
       return action.payload
@@ -8,3 +8,5 @@ export const dataReducer = (state = {}, action) => {
       return state
   }
 }
+
+export default dataReducer
