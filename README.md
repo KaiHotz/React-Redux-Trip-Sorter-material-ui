@@ -1,6 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### Live Demo
+### Live Demonpm audit
+
 Click [here](https://kaihotz.github.io/React-Redux-Trip-Sorter-material-ui)
 
 ### Getting Started
@@ -12,8 +13,8 @@ There are two methods for getting started with this repo.
 ```
   > git clone git@github.com:KaiHotz/React-Redux-Trip-Sorter-material-ui.git
   > cd React-Redux-Trip_Sorter
-  > yarn install
-  > yarn dev
+  > npm install
+  > npm dev
   > in your Browser open http://localhost:3000
 ```
 
@@ -21,8 +22,8 @@ There are two methods for getting started with this repo.
 Click [here](https://github.com/KaiHotz/React-Redux-Trip-Sorter-material-ui/archive/master.zip) to download the .zip file.  Extract the contents of the zip file, then open your terminal, change to the project directory, and:
 
 ```
-  > yarn install
-  > yarn dev
+  > npm install
+  > npm dev
   > in your Browser open http://localhost:3000
 ```
 
@@ -35,6 +36,6 @@ Click [here](https://github.com/KaiHotz/React-Redux-Trip-Sorter-material-ui/arch
 
 ### To run Tests
 ```
-  > yarn test
+  > npm test
 ```
 
