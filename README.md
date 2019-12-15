@@ -36,6 +36,6 @@ Click [here](https://github.com/KaiHotz/React-Redux-Trip-Sorter-material-ui/arch
 
 ### To run Tests
 ```
-  > npm test
+  > npm run test
 ```
 
