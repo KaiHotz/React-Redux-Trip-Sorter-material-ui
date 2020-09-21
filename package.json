@@ -11,7 +11,7 @@
   "dependencies": {
     "@material-ui/core": "^3.8.1",
     "axios": "^0.18.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
