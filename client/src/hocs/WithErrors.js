@@ -22,7 +22,7 @@ const WithErrors = WrappedComponent => class ErrorBoundary extends Component {
           error && (
             <Fragment>
               <h2>
-                  Something went wrong.
+                Something went wrong.
               </h2>
               <details style={{ whiteSpace: 'pre-wrap' }}>
                 {error.toString()}

@@ -24,13 +24,11 @@ export const ResultList = ({ results, classes: { listItem } }) => (
       ))
     }
     <Divider />
-    {
-      <ListItem className={listItem}>
-        <ListItemText
-          primary={`Total ${Math.trunc(getTotalTime(results) / 60)}h${getTotalTime(results) % 60}m ${getTotalCost(results)}€`}
-        />
-      </ListItem>
-    }
+    <ListItem className={listItem}>
+      <ListItemText
+        primary={`Total ${Math.trunc(getTotalTime(results) / 60)}h${getTotalTime(results) % 60}m ${getTotalCost(results)}€`}
+      />
+    </ListItem>
   </List>
 )
 
