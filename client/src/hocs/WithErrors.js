@@ -17,7 +17,7 @@ const WithErrors = WrappedComponent => class ErrorBoundary extends Component {
     const { error, errorInfo } = this.state
 
     return (
-      <Fragment>
+      <>
         {
           error && (
             <Fragment>
@@ -33,7 +33,7 @@ const WithErrors = WrappedComponent => class ErrorBoundary extends Component {
           )
         }
         <WrappedComponent {...this.props} />
-      </Fragment>
+      </>
     )
   }
 }

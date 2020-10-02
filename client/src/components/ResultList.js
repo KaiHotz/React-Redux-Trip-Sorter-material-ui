@@ -17,7 +17,7 @@ export const ResultList = ({ results, classes: { listItem } }) => (
           key={result.reference}
         >
           <ListItemText
-            primary={`${result.departure} > ${result.arrival} ${result.cost - (result.cost * result.discount / 100)}€`}
+            primary={`${result.departure} > ${result.arrival} ${result.cost - ((result.cost * result.discount) / 100)}€`}
             secondary={`${result.transport} ${result.reference} for ${result.duration.h}h${result.duration.m}m`}
           />
         </ListItem>
