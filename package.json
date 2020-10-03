@@ -1,6 +1,6 @@
 {
   "name": "react-redux-trip-sorter-material-ui",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": " select your depature and destination, sort them by Cheapest or Fastest option ",
   "main": "index.js",
   "repository": "https://github.com/KaiHotz/React-Redux-Trip-Sorter-material-ui",
@@ -9,152 +9,63 @@
   "private": true,
   "proxy": "http://localhost:3001",
   "dependencies": {
-    "@material-ui/core": "^3.8.1",
-    "axios": "^0.18.0",
-    "lodash": "^4.17.19",
-    "prop-types": "^15.6.2",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-redux": "^6.0.0",
-    "recompose": "^0.30.0",
-    "redux": "^4.0.1",
+    "@material-ui/core": "^4.11.0",
+    "axios": "^0.20.0",
+    "lodash": "^4.17.20",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
+    "react-scripts": "3.4.3",
+    "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0"
   },
-  "devDependencies": {
-    "@babel/core": "7.1.6",
-    "@babel/plugin-proposal-class-properties": "^7.2.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.2.0",
-    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@svgr/webpack": "2.4.1",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "9.0.0",
-    "babel-jest": "^24.8.0",
-    "babel-loader": "8.0.4",
-    "babel-plugin-named-asset-import": "^0.3.0",
-    "babel-preset-react-app": "^7.0.0",
-    "bfj": "6.1.1",
-    "case-sensitive-paths-webpack-plugin": "2.1.2",
-    "chalk": "2.4.1",
-    "css-loader": "1.0.0",
-    "dotenv": "6.0.0",
-    "dotenv-expand": "4.2.0",
-    "enzyme": "^3.8.0",
-    "enzyme-adapter-react-16": "^1.7.1",
-    "eslint": "^5.12.0",
-    "eslint-config-airbnb": "^17.1.0",
-    "eslint-config-react-app": "^3.0.6",
-    "eslint-loader": "2.1.1",
-    "eslint-plugin-flowtype": "2.50.1",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-jest": "^22.1.2",
-    "eslint-plugin-jsx-a11y": "^6.1.2",
-    "eslint-plugin-react": "^7.12.3",
-    "eslint-watch": "^4.0.2",
-    "express": "^4.16.4",
-    "express-pino-logger": "^4.0.0",
-    "file-loader": "2.0.0",
-    "fork-ts-checker-webpack-plugin-alt": "0.4.14",
-    "fs-extra": "7.0.0",
-    "html-webpack-plugin": "4.0.0-alpha.2",
-    "identity-obj-proxy": "3.0.0",
-    "jasmine-expect": "^4.0.0",
-    "jest": "^24.8.0",
-    "jest-pnp-resolver": "1.0.1",
-    "jest-resolve": "23.6.0",
-    "mini-css-extract-plugin": "0.4.3",
-    "node-sass": "^4.13.1",
-    "nodemon": "^1.18.9",
-    "npm-run-all": "^4.1.5",
-    "optimize-css-assets-webpack-plugin": "5.0.1",
-    "pnp-webpack-plugin": "1.1.0",
-    "postcss-flexbugs-fixes": "4.1.0",
-    "postcss-loader": "3.0.0",
-    "postcss-preset-env": "6.3.1",
-    "postcss-safe-parser": "4.0.1",
-    "react-app-polyfill": "^0.2.0",
-    "react-dev-utils": "^7.0.1",
-    "resolve": "1.8.1",
-    "rimraf": "^2.6.3",
-    "sass-loader": "7.1.0",
-    "style-loader": "0.23.0",
-    "terser-webpack-plugin": "^2.3.0",
-    "url-loader": "1.1.1",
-    "webpack": "^4.41.2",
-    "webpack-dev-server": "3.1.14",
-    "webpack-manifest-plugin": "2.0.4",
-    "workbox-webpack-plugin": "3.6.3"
-  },
   "scripts": {
-    "clean": "rimraf build",
     "dev": "run-p server start",
-    "start": "node client/scripts/start.js",
+    "start": "react-scripts start",
     "server": "node server --exec nodemon | pino-colada",
-    "build": "yarn clean && yarn lint:fix && node client/scripts/build.js",
-    "test": "node client/scripts/test.js",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
     "lint": "esw --ext .jsx --ext .js --color",
     "lint:fix": "yarn lint -- --fix",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "jest": {
-    "collectCoverageFrom": [
-      "client/src/**/*.{js,jsx,ts,tsx}",
-      "!client/src/**/*.d.ts"
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ],
-    "resolver": "jest-pnp-resolver",
-    "setupFiles": [
-      "react-app-polyfill/jsdom",
-      "<rootDir>client/config/jest/enzymeConfig.js"
-    ],
-    "testMatch": [
-      "<rootDir>/client/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/client/src/**/?(*.)(spec|test).{js,jsx,ts,tsx}"
-    ],
-    "testEnvironment": "jsdom",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/client/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/client/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
-      "^.+\\.module\\.(css|sass|scss)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "web.ts",
-      "ts",
-      "web.tsx",
-      "tsx",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ]
   },
-  "babel": {
-    "presets": [
-      "react-app"
-    ],
-    "plugins": [
-      "@babel/plugin-syntax-dynamic-import",
-      "@babel/plugin-proposal-object-rest-spread",
-      "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-proposal-optional-chaining"
-    ]
+  "devDependencies": {
+    "@testing-library/dom": "^7.24.3",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.0.2",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.21.3",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "eslint-watch": "^7.0.0",
+    "express": "^4.17.1",
+    "express-pino-logger": "^5.0.0",
+    "gh-pages": "^3.1.0",
+    "node-sass": "^4.14.1",
+    "nodemon": "^2.0.4",
+    "npm-run-all": "^4.1.5",
+    "pino-colada": "^2.1.0",
+    "redux-mock-store": "^1.5.4",
+    "typescript": "^4.0.3"
   }
 }
